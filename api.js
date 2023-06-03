@@ -47,5 +47,25 @@ export function addTodo({ text, token }) {
                 throw new Error("Сервер упал");
                 // return Promise.reject(new Error("Сервер упал"));
             }
-        })
+        });
+}
+
+export function login({ login, password }) {
+    return fetch("https://wedev-api.sky.pro/api/user/login", {
+        method: "POST",
+        body: JSON.stringify({
+            login,
+            password,
+        }),
+    })
+        .then((response) => {
+            if (response.status === 201) {
+                return response.json();
+            }
+            else {
+                // Код, который обработает ошибку
+                throw new Error("Сервер упал");
+                // return Promise.reject(new Error("Сервер упал"));
+            }
+        });
 }

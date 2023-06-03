@@ -67,3 +67,22 @@ export function loginUser({ login, password }) {
             }
         });
 }
+
+export function registerUser({ login, password, name }) {
+    return fetch("https://wedev-api.sky.pro/api/user", {
+        method: "POST",
+        body: JSON.stringify({
+            login,
+            password,
+            name,
+        }),
+    })
+        .then((response) => {
+            if (response.status === 201) {
+                return response.json();
+            }
+            else {
+                throw new Error("Такой пользователь уже существует");
+            }
+        });
+}

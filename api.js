@@ -50,7 +50,7 @@ export function addTodo({ text, token }) {
         });
 }
 
-export function login({ login, password }) {
+export function loginUser({ login, password }) {
     return fetch("https://wedev-api.sky.pro/api/user/login", {
         method: "POST",
         body: JSON.stringify({
@@ -63,9 +63,7 @@ export function login({ login, password }) {
                 return response.json();
             }
             else {
-                // Код, который обработает ошибку
-                throw new Error("Сервер упал");
-                // return Promise.reject(new Error("Сервер упал"));
+                throw new Error("Неверный логин или пароль");
             }
         });
 }

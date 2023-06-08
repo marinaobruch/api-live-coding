@@ -1,6 +1,6 @@
 import { loginUser, registerUser } from "/api.js";
 
-export function renderLoginComponent({ appEl, setToken, fetchAndRenderTasks }) {
+export function renderLoginComponent({ appEl, setToken, getFetch }) {
     let isLogMode = true;
 
     const renderForm = () => {
@@ -50,7 +50,7 @@ export function renderLoginComponent({ appEl, setToken, fetchAndRenderTasks }) {
                 })
                     .then((user) => {
                         setToken(`Bearer ${user.user.token}`);
-                        fetchAndRenderTasks();
+                        getFetch();
                     })
                     .catch((error) => {
                         alert(error.message);
@@ -82,7 +82,7 @@ export function renderLoginComponent({ appEl, setToken, fetchAndRenderTasks }) {
                 })
                     .then((user) => {
                         setToken(`Bearer ${user.user.token}`);
-                        fetchAndRenderTasks();
+                        getFetch();
                     })
                     .catch((error) => {
                         alert(error.message);

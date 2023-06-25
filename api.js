@@ -27,7 +27,6 @@ export function deleteTodo({ token, id }) {
         })
 }
 
-
 export function addTodo({ text, token }) {
     return fetch(host, {
         method: "POST",

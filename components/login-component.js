@@ -1,6 +1,6 @@
 import { loginUser, registerUser } from "/api.js";
 
-export function renderLoginComponent({ appEl, setToken, fetchAndRenderTasks }) {
+export function renderLoginAndRegComponent({ appEl, setToken, fetchAndRenderTasks }) {
     let isLogMode = true;
 
     const renderForm = () => {
@@ -38,7 +38,6 @@ export function renderLoginComponent({ appEl, setToken, fetchAndRenderTasks }) {
                     alert("Введите логин");
                     return;
                 }
-
                 if (!password) {
                     alert("Введите пароль");
                     return;
@@ -64,12 +63,10 @@ export function renderLoginComponent({ appEl, setToken, fetchAndRenderTasks }) {
                     alert("Введите имя");
                     return;
                 }
-
                 if (!login) {
                     alert("Введите логин");
                     return;
                 }
-
                 if (!password) {
                     alert("Введите пароль");
                     return;

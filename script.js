@@ -1,10 +1,8 @@
 import { addTodo, deleteTodo, getTodos } from "/api.js";
-import { renderLoginComponent } from "/components/login-component.js";
-
+import { renderLoginAndRegComponent } from "/components/login-component.js";
 
 let tasks = [];
-let token = "Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k";
-token = null;
+let token;
 
 const fetchAndRenderTasks = () => {
     return getTodos({ token })
@@ -17,8 +15,9 @@ const fetchAndRenderTasks = () => {
 // Функция рендер
 const renderApp = () => {
     const appEl = document.getElementById("app");
+
     if (!token) {
-        renderLoginComponent({
+        renderLoginAndRegComponent({
             appEl,
             setToken: (newToken) => {
                 token = newToken;
@@ -31,11 +30,13 @@ const renderApp = () => {
     const tasksHtml = tasks
         .map((task) => {
             return `<li class="task">
-    <p class="task-text">
-      ${task.text} (Создал: ${task.user?.name ?? "Неизвестно"})
-      <button data-id="${task.id}" class="button delete-button">Удалить</button>
-    </p>
-  </li>`;
+            <p class="task-text">
+            ${task.text} (Создал: ${task.user?.name ?? "Неизвестно"})
+            <!-- выражение "?." говорит, что если .name будет undefiend, то будет пусто, а если есть name, то оно выведется -->
+            <!-- выражение "??" говорит, что если вся правая часть будет undefiend, то выведется то, что после ?? -->
+            <button data-id="${task.id}" class="button delete-button">Удалить</button>
+            </p>
+            </li>`;
         }).join("");
 
     const appHTML = `
@@ -57,7 +58,6 @@ const renderApp = () => {
     appEl.innerHTML = appHTML;
 
     const buttonElement = document.getElementById("add-button");
-    const listElement = document.getElementById("list");
     const textInputElement = document.getElementById("text-input");
 
     //Функция удаления задачи из списка задач
